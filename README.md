@@ -8,7 +8,7 @@ A currency converter application built with React that uses an API to fetch exch
 - Convert between multiple currencies
 - Fetch real-time exchange rates using an API
 - Total 162 currency for convert
-- Swep button for change  currency from and to
+- Swep button for swep currency
 
 ## API
  Get API key for currency's value
