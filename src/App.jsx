@@ -1,36 +1,40 @@
-
 import Input from './Input'
-
+import CurrencyInfo from './components/CurrencyInfo'
 function App() {
-    const valueSwep = () => {
-        let curtyp1 = document.getElementById('select1').value
-        let id1 = document.getElementById(curtyp1)
-        let select1 = id1.getAttribute('data-value');
-        let curtyp2 = document.getElementById('select2').value
-        let id2 = document.getElementById(curtyp2)
-        let select2 = id2.getAttribute('data-value');
-        document.getElementById('select1').value = curtyp2
-        document.getElementById('select2').value = curtyp1
-        document.getElementById('value1').value = select2
-        document.getElementById('value2').value = select1
 
-    }
+    let val1
+    const Currency = 'usd'
+    let currencyInfo = CurrencyInfo(Currency).rates
 
     const Convert = () => {
-
         let curtyp1 = document.getElementById('select1').value
-        let id1 = document.getElementById(curtyp1)
-        let select1 = id1.getAttribute('data-value');
-        let curtyp2 = document.getElementById('select2').value
-        let id2 = document.getElementById(curtyp2)
-        let select2 = id2.getAttribute('data-value');
-
-
         let input = document.getElementById('value1').value
+        let curtyp2 = document.getElementById('select2').value
+        const customArray = Object.entries(currencyInfo).map(([key, value]) => {
+            return { key, value };
+        });
+        customArray.forEach(e => {
+            if (e.key == curtyp1) {
+                val1 = e.value
+            }
+        })
+        customArray.forEach(e => {
+            if (e.key == curtyp2 && val1 !== undefined) {
+                let ans = input * e.value / val1
+                document.getElementById('value2').value = ans
+            }
+        })
+    }
 
-        let ans = input * select2 / select1
-
-        document.getElementById('value2').value = ans
+    const valueSwep = () => {
+        let curtyp1 = document.getElementById('select1').value
+        let curtyp2 = document.getElementById('select2').value
+        let value1 = document.getElementById('value1').value
+        let value2 = document.getElementById('value2').value
+        document.getElementById('select1').value = curtyp2
+        document.getElementById('select2').value = curtyp1
+        document.getElementById('value1').value = value2
+        document.getElementById('value2').value = value1
     }
 
     return (
