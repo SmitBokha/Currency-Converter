@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 
-const CurrencyInfo = () => {
+const CurrencyInfo = (crypto) => {
 
-    const apiURL = 'https://api.exchangerate-api.com/v4/latest/inr'
+    const apiURL = `https://api.exchangerate-api.com/v4/latest/${crypto}`
     const [data, setdata] = useState({})
     useEffect(() => {
 
