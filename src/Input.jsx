@@ -2,7 +2,7 @@ import React from 'react'
 import CurrencyInfo from './components/CurrencyInfo'
 
 function Input({ lebal, isreadOnly, textId, selectId = [], }) {
-    let currencyOptions = CurrencyInfo()
+    let currencyOptions = CurrencyInfo('usd')
     return (
         <div className="w-full mb-1">
             <div className=' bg-white p-6 flex justify-between rounded-lg'>
@@ -13,17 +13,16 @@ function Input({ lebal, isreadOnly, textId, selectId = [], }) {
                         className=' h-9 rounded-lg border-0 ps-2'
                         min={0}
                         placeholder='00'
-                        
                         readOnly={isreadOnly}
                     /></div>
                 </div>
                 <div className='flex items-end flex-col'>
                     <label htmlFor="selectId" className=' text-slate-600'>Currency Type</label>
                     <div>
-                        <select id={selectId} name="selectId" >
+                        <select id={selectId} name="selectId">
                             {
-                                currencyOptions && currencyOptions.rates && Object.entries(currencyOptions.rates).map(([currency, rate]) => (
-                                    <Opction key={currency}  currency={currency} rate={rate} />
+                                currencyOptions && currencyOptions.rates && Object.entries(currencyOptions.rates).map(([currency]) => (
+                                    <Opction key={currency} currency={currency}  />
                                 ))
                             }
                         </select>
@@ -35,8 +34,8 @@ function Input({ lebal, isreadOnly, textId, selectId = [], }) {
 }
 
 const Opction = (props) => {
-    const {currency, rate}= props
-    return <option data-value={rate} id={currency}>{currency}</option>
+    const { currency } = props
+    return <option id={currency}>{currency}</option>
 }
 
 export default Input
